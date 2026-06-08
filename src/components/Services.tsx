@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { Layout, Smartphone, Code2, Wrench, Globe, AppWindow } from "lucide-react";
+import { Layout, Smartphone, Code2, Wrench, Globe, AppWindow, Database } from "lucide-react";
 
 const services = [
   { name: "Website Development", icon: Globe },
@@ -7,6 +7,7 @@ const services = [
   { name: "Web Application", icon: AppWindow },
   { name: "PWA Development", icon: Smartphone },
   { name: "Frontend Development", icon: Code2 },
+  { name: "Backend Development", icon: Database },
   { name: "Website Maintenance", icon: Wrench },
 ];
 
