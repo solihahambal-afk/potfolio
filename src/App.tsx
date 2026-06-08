@@ -8,7 +8,6 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
-import Innovation from "./components/Innovation";
 import Services from "./components/Services";
 import Stats from "./components/Stats";
 import Timeline from "./components/Timeline";
@@ -26,7 +25,6 @@ export default function App() {
           <About />
           <Skills />
           <Projects />
-          <Innovation />
           <Services />
           <Stats />
           <Timeline />
