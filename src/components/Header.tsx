@@ -1,17 +1,19 @@
-import { Moon, Sun, Menu, X, Github, Linkedin, Mail } from "lucide-react";
+import { Moon, Sun, Menu, X, Github, Linkedin, Mail, Languages } from "lucide-react";
 import { useState } from "react";
 import { useTheme } from "./ThemeProvider";
+import { useLanguage } from "./LanguageProvider";
 import { cn } from "../lib/utils";
 
 export default function Header() {
   const { theme, setTheme } = useTheme();
+  const { t, language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Projects", href: "#projects" },
-    { name: "Contact", href: "#contact" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.contact, href: "#contact" },
   ];
 
   return (
@@ -24,7 +26,7 @@ export default function Header() {
             </a>
           </div>
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
+            <div className="mx-10 flex items-center space-x-8 rtl:space-x-reverse">
               {links.map((link) => (
                 <a
                   key={link.name}
@@ -34,13 +36,21 @@ export default function Header() {
                   {link.name}
                 </a>
               ))}
-              <div className="flex items-center space-x-4 border-l border-border pl-6">
+              <div className="flex items-center space-x-4 rtl:space-x-reverse border-l rtl:border-l-0 rtl:border-r border-border pl-6 rtl:pl-0 rtl:pr-6">
                 <a href="https://github.com/solihahambal-afk" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   <Github className="w-5 h-5" />
                 </a>
                 <a href="https://www.linkedin.com/in/solih-hambal-28933929a" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
                   <Linkedin className="w-5 h-5" />
                 </a>
+                <button
+                  onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+                  className="p-2 rounded-full hover:bg-muted transition-colors text-foreground flex items-center space-x-1 rtl:space-x-reverse text-xs font-bold"
+                  aria-label="Toggle language"
+                >
+                  <Languages className="w-4 h-4" />
+                  <span>{language === "en" ? "AR" : "EN"}</span>
+                </button>
                 <button
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                   className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
@@ -50,7 +60,15 @@ export default function Header() {
               </div>
             </div>
           </div>
-          <div className="-mr-2 flex md:hidden items-center space-x-2">
+          <div className="-mr-2 flex md:hidden items-center space-x-2 rtl:space-x-reverse">
+            <button
+              onClick={() => setLanguage(language === "en" ? "ar" : "en")}
+              className="p-2 rounded-full hover:bg-muted transition-colors text-foreground flex items-center text-xs font-bold"
+              aria-label="Toggle language"
+            >
+              <Languages className="w-4 h-4 mr-1 rtl:mr-0 rtl:ml-1" />
+              {language === "en" ? "AR" : "EN"}
+            </button>
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               className="p-2 rounded-full hover:bg-muted transition-colors text-foreground"
@@ -81,7 +99,7 @@ export default function Header() {
               {link.name}
             </a>
           ))}
-          <div className="flex items-center space-x-4 px-3 py-4 border-t border-border mt-4">
+          <div className="flex items-center space-x-4 rtl:space-x-reverse px-3 py-4 border-t border-border mt-4">
             <a href="https://github.com/solihahambal-afk" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground transition-colors">
               <Github className="w-6 h-6" />
             </a>

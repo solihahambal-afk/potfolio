@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { useLanguage } from "./LanguageProvider";
 
 const AnimatedCounter = ({ end, duration = 2, suffix = "" }: { end: number, duration?: number, suffix?: string }) => {
   const [count, setCount] = useState(0);
@@ -34,18 +35,20 @@ const AnimatedCounter = ({ end, duration = 2, suffix = "" }: { end: number, dura
 };
 
 export default function Stats() {
-  const stats = [
-    { value: 2, suffix: "+", label: "Completed Projects", animate: true },
-    { value: 100, suffix: "%", label: "Responsive Designs", animate: true },
-    { value: "Continuous", label: "Learning", animate: false },
-    { value: "Innovation", label: "Focused", animate: false },
+  const { t } = useLanguage();
+
+  const originalStatsData = [
+    { value: 2, animate: true },
+    { value: 100, animate: true },
+    { value: null, animate: false },
+    { value: null, animate: false },
   ];
 
   return (
     <section className="py-16 border-y border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-transparent lg:divide-border text-center">
-          {stats.map((stat, index) => (
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-x divide-transparent lg:divide-border rtl:divide-x-reverse text-center">
+          {t.stats.items.map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -55,8 +58,8 @@ export default function Stats() {
               className="px-4"
             >
               <div className="text-4xl md:text-5xl font-display font-bold mb-2 text-primary">
-                {stat.animate ? (
-                  <AnimatedCounter end={stat.value as number} suffix={stat.suffix} />
+                {originalStatsData[index].animate ? (
+                  <AnimatedCounter end={originalStatsData[index].value as number} suffix={stat.suffix} />
                 ) : (
                   <span>{stat.value}</span>
                 )}

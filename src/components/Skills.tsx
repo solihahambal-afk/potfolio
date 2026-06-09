@@ -1,19 +1,9 @@
 import { motion } from "motion/react";
-
-const skills = [
-  "HTML5",
-  "CSS3",
-  "JavaScript",
-  "Supabase",
-  "Responsive Web Design",
-  "Progressive Web Apps (PWA)",
-  "Git & GitHub",
-  "UI/UX Design",
-  "Problem Solving",
-  "Team Collaboration"
-];
+import { useLanguage } from "./LanguageProvider";
 
 export default function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section className="py-20" id="skills">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,9 +13,9 @@ export default function Skills() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">Technical Skills</h2>
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-10">{t.skills.title}</h2>
           <div className="flex flex-wrap gap-3">
-            {skills.map((skill, index) => (
+            {t.skills.items.map((skill, index) => (
               <motion.span
                 key={skill}
                 initial={{ opacity: 0, scale: 0.9 }}
